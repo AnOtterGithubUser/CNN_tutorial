@@ -1,0 +1,6 @@
+jupyterlab
+numpy
+plotly
+matplotlib
+torch
+tensorflow
