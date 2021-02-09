@@ -4,3 +4,7 @@ plotly
 matplotlib
 torch
 tensorflow
+scipy
+torchvision
+scikit-learn
+ipdb
