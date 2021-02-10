@@ -10,7 +10,7 @@ ctypedef fused DTYPE_t:
     np.float32_t
     np.float64_t
 
-def im2col_cython(np.ndarray[DTYPE_t, ndim=4] x, int field_height,
+def im2col_indices(np.ndarray[DTYPE_t, ndim=4] x, int field_height,
                   int field_width, int padding, int stride):
     cdef int N = x.shape[0]
     cdef int C = x.shape[1]
@@ -38,7 +38,7 @@ def im2col_cython(np.ndarray[DTYPE_t, ndim=4] x, int field_height,
 
 
 @cython.boundscheck(False)
-cdef int im2col_cython_inner(np.ndarray[DTYPE_t, ndim=2] cols,
+cdef int im2col_indices_inner(np.ndarray[DTYPE_t, ndim=2] cols,
                              np.ndarray[DTYPE_t, ndim=4] x_padded,
                              int N, int C, int H, int W, int HH, int WW,
                              int field_height, int field_width, int padding, int stride) except? -1:
@@ -56,7 +56,7 @@ cdef int im2col_cython_inner(np.ndarray[DTYPE_t, ndim=2] cols,
 
 
 
-def col2im_cython(np.ndarray[DTYPE_t, ndim=2] cols, int N, int C, int H, int W,
+def col2im_indices(np.ndarray[DTYPE_t, ndim=2] cols, int N, int C, int H, int W,
                   int field_height, int field_width, int padding, int stride):
     cdef np.ndarray x = np.empty((N, C, H, W), dtype=cols.dtype)
     cdef int HH = (H + 2 * padding - field_height) / stride + 1
@@ -74,7 +74,7 @@ def col2im_cython(np.ndarray[DTYPE_t, ndim=2] cols, int N, int C, int H, int W,
 
 
 @cython.boundscheck(False)
-cdef int col2im_cython_inner(np.ndarray[DTYPE_t, ndim=2] cols,
+cdef int col2im_indices_inner(np.ndarray[DTYPE_t, ndim=2] cols,
                              np.ndarray[DTYPE_t, ndim=4] x_padded,
                              int N, int C, int H, int W, int HH, int WW,
                              int field_height, int field_width, int padding, int stride) except? -1:

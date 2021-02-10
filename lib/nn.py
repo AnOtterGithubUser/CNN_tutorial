@@ -1,4 +1,6 @@
 import numpy as np
+from im2col import im2col_indices, col2im_indices
+
 
 class Module:
 
@@ -29,10 +31,6 @@ class Sequential(Module):
     def backward(self, out_grad):
         for layer in self._modules[::-1]:
             out_grad = layer.backward(out_grad)
-
-    def step(self, optimizer):
-        for layer in self._modules:
-            layer.step()
 
 
 class FullyConnected(Module):
