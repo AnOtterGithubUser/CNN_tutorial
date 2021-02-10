@@ -8,3 +8,4 @@ scipy
 torchvision
 scikit-learn
 ipdb
+cython
