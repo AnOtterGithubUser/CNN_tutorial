@@ -1,5 +1,4 @@
 .DS_Store
 .ipynb_checkpoints/
-dataset/dogs-vs-cats/
-dataset/dogs-vs-cats.zip
 .idea/
+dogs-vs-cats/
